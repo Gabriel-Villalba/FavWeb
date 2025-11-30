@@ -3,7 +3,7 @@ import { Carousel } from "@/components/home/Carousel";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { ArrowRight, Star, ShieldCheck, Truck, Wrench } from "lucide-react";
-import { motion } from "framer-motion";
+//mport { motion } from "framer-motion";
 
 export default function Home() {
   return (

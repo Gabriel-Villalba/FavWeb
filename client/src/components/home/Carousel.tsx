@@ -2,8 +2,8 @@ import React, { useCallback } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
 import Autoplay from 'embla-carousel-autoplay';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import hero1 from "@assets/generated_images/steaks_grilling_on_a_parrilla.png";
-import hero2 from "@assets/generated_images/modern_backyard_bbq_setup.png";
+import hero1 from "../../../../attached_assets/generated_images/steaks_grilling_on_a_parrilla.png";
+import hero2 from "../../../../attached_assets/generated_images/modern_backyard_bbq_setup.png";
 
 const slides = [
   {

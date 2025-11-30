@@ -2,9 +2,9 @@ import { Product } from "@/lib/data";
 import { motion } from "framer-motion";
 import { Eye, Check } from "lucide-react";
 import { useMemo } from "react";
-import product1Img from "@assets/generated_images/stainless_steel_parrilla_grill.png";
-import product2Img from "@assets/generated_images/iron_asador_cross.png";
-import product3Img from "@assets/generated_images/steaks_grilling_on_a_parrilla.png"; // Fallback
+import product1Img from "../../../../attached_assets/generated_images/stainless_steel_parrilla_grill.png";
+import product2Img from "../../../../attached_assets/generated_images/iron_asador_cross.png";
+import product3Img from "../../../../attached_assets/generated_images/steaks_grilling_on_a_parrilla.png"; // Fallback
 
 interface ProductCardProps {
   product: Product;

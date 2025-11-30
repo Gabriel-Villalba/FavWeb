@@ -3,7 +3,7 @@ import { Link, useLocation } from "wouter";
 import { Menu, X, Phone, MapPin, ShoppingBag } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { navLinks } from "@/lib/data";
-import logoImage from "@assets/generated_images/iconFav.png";
+import logoImage from "../../../../attached_assets/generated_images/iconFav.png";
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);

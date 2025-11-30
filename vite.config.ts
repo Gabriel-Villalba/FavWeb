@@ -39,6 +39,9 @@ export default defineConfig({
   build: {
     outDir: path.resolve(import.meta.dirname, "dist/public"),
     emptyOutDir: true,
+   
+    chunkSizeWarningLimit: 1600, // o el número que quieras
+  
   },
   server: {
     host: "0.0.0.0",
@@ -48,4 +51,5 @@ export default defineConfig({
       deny: ["**/.*"],
     },
   },
+  
 });

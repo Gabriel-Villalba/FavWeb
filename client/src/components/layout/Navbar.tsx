@@ -40,7 +40,7 @@ export function Navbar() {
             </div>
             <div className="flex flex-col">
               <span className="font-heading font-bold text-xl leading-none uppercase tracking-tighter">
-                Gabriel
+                Fav
               </span>
               <span className="text-xs text-muted-foreground uppercase tracking-widest">
                 Parrillas & Asadores
@@ -63,7 +63,7 @@ export function Navbar() {
             </Link>
           ))}
           <a
-            href="https://wa.me/5493492000000"
+            href="https://wa.me/54"
             target="_blank"
             rel="noreferrer"
             className="bg-primary text-primary-foreground px-4 py-2 rounded-full font-bold text-sm uppercase tracking-wide hover:bg-primary/90 transition-colors flex items-center gap-2"

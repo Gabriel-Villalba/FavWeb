@@ -1,5 +1,5 @@
 import { Layout } from "@/components/layout/Layout";
-import workshopImage from "../../../../attached_assets/generated_images/metal_workshop_interior.png";
+import workshopImage from "@assets/generated_images/metal_workshop_interior.png";
 
 export default function About() {
   return (

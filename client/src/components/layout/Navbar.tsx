@@ -3,7 +3,7 @@ import { Link, useLocation } from "wouter";
 import { Menu, X, Phone, MapPin, ShoppingBag } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { navLinks } from "@/lib/data";
-import logoImage from "../../../../attached_assets/generated_images/iconFav.png";
+import logoImage from "@assets/generated_images/iconFav.png";
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -36,7 +36,7 @@ export function Navbar() {
         <Link href="/">
           <a className="flex items-center gap-2 group">
             <div >
-               <img src={logoImage} alt="Logo" className="w-20 h-30 object-contain" />
+               <img src={logoImage} alt="Logo" className="w-10 h-10 object-contain" />
             </div>
             <div className="flex flex-col">
               <span className="font-heading font-bold text-xl leading-none uppercase tracking-tighter">

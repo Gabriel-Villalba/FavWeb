@@ -3,7 +3,7 @@ import { Link, useLocation } from "wouter";
 import { Menu, X, Phone, MapPin, ShoppingBag } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { navLinks } from "@/lib/data";
-import logoImage from "@assets/generated_images/stylized_grill_logo_icon.png";
+import logoImage from "@assets/generated_images/iconFav.png";
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -35,8 +35,8 @@ export function Navbar() {
         {/* Logo */}
         <Link href="/">
           <a className="flex items-center gap-2 group">
-            <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center overflow-hidden">
-               <img src={logoImage} alt="Logo" className="w-8 h-8 object-contain" />
+            <div >
+               <img src={logoImage} alt="Logo" className="w-20 h-30 object-contain" />
             </div>
             <div className="flex flex-col">
               <span className="font-heading font-bold text-xl leading-none uppercase tracking-tighter">
@@ -63,7 +63,7 @@ export function Navbar() {
             </Link>
           ))}
           <a
-            href="https://wa.me/54"
+            href="https://wa.me/5493492588185"
             target="_blank"
             rel="noreferrer"
             className="bg-primary text-primary-foreground px-4 py-2 rounded-full font-bold text-sm uppercase tracking-wide hover:bg-primary/90 transition-colors flex items-center gap-2"
@@ -106,7 +106,7 @@ export function Navbar() {
             ))}
             <div className="mt-auto flex flex-col gap-4">
               <a
-                href="https://wa.me/5493492000000"
+                href="https://wa.me/5493492588185"
                 target="_blank"
                 rel="noreferrer"
                 className="bg-green-600 text-white p-4 rounded-lg font-bold text-center uppercase flex items-center justify-center gap-2"

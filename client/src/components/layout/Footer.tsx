@@ -31,21 +31,21 @@ export function Footer() {
           <div className="flex flex-col gap-4">
             <h4 className="text-lg font-bold uppercase">Contacto</h4>
             <div className="flex flex-col gap-3">
-              <a href="https://wa.me/5493492000000" className="flex items-center gap-3 text-muted-foreground hover:text-primary transition-colors">
+              <a href="https://wa.me/5493492588185" className="flex items-center gap-3 text-muted-foreground hover:text-primary transition-colors">
                 <Phone size={18} />
-                <span>+54 9 3492 000000</span>
+                <span>+54 9 3492 588185</span>
               </a>
               <div className="flex items-center gap-3 text-muted-foreground">
                 <MapPin size={18} />
                 <span>Erasmo Poggi 483, Rafaela, Santa Fe</span>
               </div>
-              <a href="mailto:info@parrillasgabriel.com" className="flex items-center gap-3 text-muted-foreground hover:text-primary transition-colors">
+              <a href="mailto: favproduccciones@gmail.com" className="flex items-center gap-3 text-muted-foreground hover:text-primary transition-colors">
                 <Mail size={18} />
-                <span>info@parrillasgabriel.com</span>
+                <span>favproduccciones@gmail.com</span>
               </a>
             </div>
             <div className="flex gap-4 mt-2">
-              <a href="#" className="w-10 h-10 rounded-full bg-background flex items-center justify-center text-foreground hover:bg-primary hover:text-white transition-colors">
+              <a href="https://www.facebook.com/fav.asadores" className="w-10 h-10 rounded-full bg-background flex items-center justify-center text-foreground hover:bg-primary hover:text-white transition-colors">
                 <Facebook size={20} />
               </a>
               <a href="#" className="w-10 h-10 rounded-full bg-background flex items-center justify-center text-foreground hover:bg-primary hover:text-white transition-colors">

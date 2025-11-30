@@ -1,0 +1,156 @@
+Quiero que generes un proyecto completo utilizando las siguientes tecnologías:
+
+React
+
+TypeScript
+
+TailwindCSS
+
+Proyecto 100% responsive, pensado primero para móvil.
+
+Generar toda la estructura necesaria del proyecto (carpetas, componentes, hooks, páginas, rutas, assets, etc.).
+
+Quiero una web funcional para un catálogo de productos (parrillas y asadores) con estas secciones:
+
+🟦 1. Layout general
+Header / Navbar
+
+Debe incluir espacio para un logo a la izquierda.
+
+A la derecha, el menú con estas opciones:
+
+Inicio
+
+Catálogo
+
+Dónde Estamos
+
+Nosotros
+
+En pantallas móviles:
+
+El menú debe convertirse en menú hamburguesa, que se transforma en una X al abrirse.
+
+El menú móvil debe deslizarse desde arriba o desde la derecha (tú eliges la mejor UX).
+
+Extras:
+
+El header debe tener sombra suave.
+
+Debe quedar fijo (sticky top) al hacer scroll.
+
+🟦 2. Página INICIO
+
+Debe tener:
+
+Título principal del emprendimiento (Parrillas & Asadores Gabriel).
+
+Carrusel (slider) con imágenes de ofertas o productos destacados.
+
+El carrusel debe ser 100% responsive.
+
+Puede usar librería recomendada para React + TS (ej: Swiper), o implementarlo simple con Tailwind + transitions.
+
+🟦 3. Página CATALOGO
+
+Esta es la página más importante. Debe incluir:
+
+Lista de productos
+
+Mostrar 8 productos por página → requiere paginación.
+
+Cada producto debe mostrarse como una tarjeta (card) con:
+
+Imagen
+
+Nombre
+
+(opcional) Precio resumido o etiqueta “Ver más”
+
+Al hacer clic en un producto:
+
+Abrir una vista expandida (puede ser modal o página individual):
+
+Debe incluir:
+
+Imagen más grande
+
+Nombre del producto
+
+Descripción detallada
+
+Precio
+
+Botón de WhatsApp con texto:
+“Contactenos por este producto”
+(enlace a wa.me con número configurable)
+
+Botón Volver que regresa al catálogo
+
+Extras recomendados (agregarlos):
+
+Efecto de hover suave en las tarjetas
+
+Animación al abrir el modal (si usas modal)
+
+Indicador de página (1, 2, 3, ...)
+
+🟦 4. Página “DÓNDE ESTAMOS”
+
+Debe mostrar:
+
+Título: “Nuestra ubicación”
+
+Una imagen estilo captura de Google Maps indicando la dirección:
+Erasmo Poggi 483, Rafaela, Santa Fe, Argentina
+
+(Usar una imagen fija y no un mapa interactivo, ya que el proyecto no tendrá backend.)
+
+Debajo, un botón que abra Google Maps con esa dirección.
+
+🟦 5. Página NOSOTROS
+
+Debe contener:
+
+Título
+
+Texto contando brevemente la historia del emprendimiento (puede agregar un placeholder que luego reemplazaré)
+
+Imagen ilustrativa (tú eliges alguna genérica de taller/herrero)
+
+Diseño limpio y centrado.
+
+🟦 6. Extras opcionales (agregar si mejora la UX)
+
+Si lo consideras útil, puedes agregar:
+
+Un pequeño footer con:
+
+WhatsApp
+
+Ciudad: Rafaela, Santa Fe, Argentina
+
+Email (placeholder)
+
+Animaciones suaves usando Tailwind transitions o Framer Motion.
+
+Modo oscuro con toggle (opcional).
+
+No es necesario un carrito de compras completo, pero sí puedes agregar una función simple para “seleccionar varios productos” y luego enviar un mensaje de WhatsApp con la lista elegida.
+Si lo haces, que sea solo front-end (sin persistencia).
+
+🟦 7. Instrucciones finales
+
+Usar React + TypeScript.
+
+Estilos exclusivamente con TailwindCSS.
+
+Estructurar el proyecto usando componentes reutilizables y carpetas ordenadas.
+
+Todo el código debe ser funcional y ejecutarse sin errores.
+
+Genera el proyecto completo listo para ejecutar con npm install y npm run dev.
+
+🟦 Puedes mejorar el diseño final si lo consideras necesario.
+
+Confío en tus decisiones para lograr una web profesional y moderna.

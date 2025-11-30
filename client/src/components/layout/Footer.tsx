@@ -9,7 +9,7 @@ export function Footer() {
           {/* Brand */}
           <div className="flex flex-col gap-4">
             <h3 className="text-2xl font-heading font-bold uppercase text-primary">
-              Parrillas & Asadores Gabriel
+              Parrillas & Asadores
             </h3>
             <p className="text-muted-foreground max-w-xs">
               Artesanía en hierro y acero para los amantes del buen asado. Calidad que dura toda la vida.

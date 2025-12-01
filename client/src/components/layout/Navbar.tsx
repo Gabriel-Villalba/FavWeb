@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "wouter";
 import { Menu, X, Phone, MapPin, ShoppingBag } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { createPortal } from "react-dom";
 import { navLinks } from "@/lib/data";
 import logoImage from "@assets/generated_images/iconFav.png";
 
@@ -22,6 +23,18 @@ export function Navbar() {
   useEffect(() => {
     setIsOpen(false);
   }, [location]);
+
+  // Lock body scroll while mobile menu is open
+  useEffect(() => {
+    if (isOpen) {
+      const prev = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
+      return () => {
+        document.body.style.overflow = prev;
+      };
+    }
+    return;
+  }, [isOpen]);
 
   return (
     <header
@@ -84,43 +97,58 @@ export function Navbar() {
       </div>
 
       {/* Mobile Menu */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, x: "100%" }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: "100%" }}
-            transition={{ type: "spring", damping: 25, stiffness: 200 }}
-            className="fixed inset-0 top-[60px] bg-background z-40 md:hidden flex flex-col p-8 gap-6 border-t border-border"
+      {/* Mobile Menu */}
+{isOpen &&
+  createPortal(
+    <div className="fixed inset-0 z-[9999] md:hidden">
+      {/* Backdrop that captures clicks - calm gray */}
+      <div
+        className="absolute inset-0 bg-gray-700/95"
+        onClick={() => setIsOpen(false)}
+      />
+
+      <div
+        className="absolute inset-0 text-white flex flex-col p-8 gap-6 pointer-events-auto z-[10000]"
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* Close button inside overlay (visible) */}
+        <button
+          aria-label="Cerrar menú"
+          onClick={() => setIsOpen(false)}
+          className="absolute top-4 right-4 z-[10001] p-2 rounded-full bg-white/10 text-white hover:bg-white/20"
+        >
+          <X size={22} />
+        </button>
+        {navLinks.map((link) => (
+          <Link key={link.path} href={link.path}>
+            <a
+              className={`text-2xl font-heading font-bold uppercase tracking-wide ${
+                location === link.path ? "text-primary" : "text-white"
+              }`}
+            >
+              {link.name}
+            </a>
+          </Link>
+        ))}
+        <div className="mt-auto flex flex-col gap-4">
+          <a
+            href="https://wa.me/5493492588185"
+            target="_blank"
+            rel="noreferrer"
+            className="bg-green-600 text-white p-4 rounded-lg font-bold text-center uppercase flex items-center justify-center gap-2"
           >
-            {navLinks.map((link) => (
-              <Link key={link.path} href={link.path}>
-                <a
-                  className={`text-2xl font-heading font-bold uppercase tracking-wide ${
-                    location === link.path ? "text-primary" : "text-foreground"
-                  }`}
-                >
-                  {link.name}
-                </a>
-              </Link>
-            ))}
-            <div className="mt-auto flex flex-col gap-4">
-              <a
-                href="https://wa.me/5493492588185"
-                target="_blank"
-                rel="noreferrer"
-                className="bg-green-600 text-white p-4 rounded-lg font-bold text-center uppercase flex items-center justify-center gap-2"
-              >
-                <Phone size={20} /> WhatsApp
-              </a>
-              <div className="flex items-center gap-2 text-muted-foreground">
-                <MapPin size={18} />
-                <span>Erasmo Poggi 483, Rafaela</span>
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            <Phone size={20} /> WhatsApp
+          </a>
+          <div className="flex items-center gap-2 text-gray-300">
+            <MapPin size={18} />
+            <span>Erasmo Poggi 483, Rafaela</span>
+          </div>
+        </div>
+      </div>
+    </div>,
+    document.body,
+  )}
+
     </header>
   );
 }

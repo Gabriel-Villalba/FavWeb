@@ -13,7 +13,7 @@ export interface Product {
 export const products: Product[] = [
   {
     id: 1,
-    name: "Parrilla Premium Inox",
+    name: "Asador tambor completo",
     description: "Parrilla de acero inoxidable de alta calidad con sistema de elevación frontal y emparrillado en V. Ideal para exigentes del asado.",
     price: 450000,
     category: "Parrillas",
@@ -22,7 +22,7 @@ export const products: Product[] = [
   },
   {
     id: 2,
-    name: "Estaca Cruz Asador",
+    name: "Asador rectangular Premium",
     description: "Cruz asador tradicional de hierro reforzado, perfecta para costillares y corderos a la llama. Regulable en 3 posiciones.",
     price: 85000,
     category: "Asadores",
@@ -31,7 +31,7 @@ export const products: Product[] = [
   },
   {
     id: 3,
-    name: "Parrilla Portátil Camping",
+    name: "Medio Tambor",
     description: "La compañera ideal para tus viajes. Parrilla compacta, plegable y resistente. Llévala donde quieras.",
     price: 65000,
     category: "Parrillas",

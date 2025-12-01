@@ -3,9 +3,9 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } f
 import { Button } from "@/components/ui/button";
 import { MessageCircle, CheckCircle2 } from "lucide-react";
 import { useMemo } from "react";
-import product1Img from "@assets/generated_images/stainless_steel_parrilla_grill.png";
-import product2Img from "@assets/generated_images/iron_asador_cross.png";
-import product3Img from "@assets/generated_images/steaks_grilling_on_a_parrilla.png"; // Fallback
+import product1Img from "@assets/generated_images/tamborCompleto.jpg";
+import product2Img from "@assets/generated_images/rectangular.png";
+import product3Img from "@assets/generated_images/medioTambor.png";
 
 interface ProductModalProps {
   product: Product | null;
@@ -24,7 +24,7 @@ export function ProductModal({ product, isOpen, onClose }: ProductModalProps) {
   }, [product?.image]);
 
   const whatsappMessage = `Hola! Estoy interesado en el producto: ${product.name} ($${product.price})`;
-  const whatsappLink = `https://wa.me/5493492000000?text=${encodeURIComponent(whatsappMessage)}`;
+  const whatsappLink = `https://wa.me/5493492588185?text=${encodeURIComponent(whatsappMessage)}`;
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>

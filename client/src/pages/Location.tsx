@@ -1,7 +1,7 @@
 import { Layout } from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
 import { MapPin, ExternalLink } from "lucide-react";
-import mapImage from "@assets/generated_images/generic_map_location_graphic.png";
+import mapImage from "@assets/generated_images/ubicacion.jpeg";
 
 export default function Location() {
   const address = "Erasmo Poggi 483, Rafaela, Santa Fe, Argentina";

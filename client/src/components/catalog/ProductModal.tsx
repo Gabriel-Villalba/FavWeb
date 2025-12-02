@@ -23,7 +23,7 @@ export function ProductModal({ product, isOpen, onClose }: ProductModalProps) {
     return product3Img;
   }, [product?.image]);
 
-  const whatsappMessage = `Hola! Estoy interesado en el producto: ${product.name} ($${product.price})`;
+  const whatsappMessage = `Hola! Estoy interesado en el producto ${product.name} ($${product.price}) que vi en la web. ¿Está disponible?`;
   const whatsappLink = `https://wa.me/5493492588185?text=${encodeURIComponent(whatsappMessage)}`;
 
   return (

@@ -14,38 +14,38 @@ export const products: Product[] = [
   {
     id: 1,
     name: "Asador tambor completo",
-    description: "Parrilla de acero inoxidable de alta calidad con sistema de elevación frontal y emparrillado en V. Ideal para exigentes del asado.",
-    price: 450000,
+    description: "Simple, práctico y rendidor. Perfecto para quienes aman el sabor del asado a la leña y buscan durabilidad en su inversión. Un tambor, mil momentos compartidos",
+    price: 195000,
     category: "Parrillas",
     image: "@assets/product1.png", // Will map to generated assets
-    features: ["Acero Inoxidable 304", "Sistema de elevación", "Grasera desmontable", "Ruedas reforzadas"]
+    features: ["Hierro macizo", "Portátil", "Facil limpieza", "Ruedas reforzadas"]
   },
   {
     id: 2,
     name: "Asador rectangular Premium",
-    description: "Cruz asador tradicional de hierro reforzado, perfecta para costillares y corderos a la llama. Regulable en 3 posiciones.",
-    price: 85000,
+    description: "El lujo del asador moderno: amplio, cómodo y con tabli­ta de regalo para cortar y servir. Perfecto para el asador detallista que cuida cada punto del fuego.",
+    price: 240000,
     category: "Asadores",
     image: "@assets/product2.png",
-    features: ["Hierro macizo", "Base giratoria 360°", "3 posiciones de inclinación", "Desmontable"]
+    features: ["Hierro macizo", "Portátil", "Liviano", "Tabla rebatible"]
   },
   {
     id: 3,
     name: "Medio Tambor",
-    description: "La compañera ideal para tus viajes. Parrilla compacta, plegable y resistente. Llévala donde quieras.",
-    price: 65000,
+    description: "Compacto, pero poderoso. Ideal para espacios chicos y departamentos. Y de yapa  ¡viene con parrilla de regalo! Porque el fuego se disfruta en todos los tamaños .",
+    price: 100.000,
     category: "Parrillas",
     image: "@assets/product3.png",
-    features: ["Plegable", "Liviana", "Incluye bolso", "Fácil limpieza"]
+    features: ["Pequeño", "Liviana", "Incluye parrilla", "Fácil limpieza"]
   },
   {
     id: 4,
-    name: "Fogoneo Rústico",
-    description: "Fogonero de diseño para jardín. Ideal para cocinar al disco o mantener el calor en noches frescas.",
-    price: 120000,
+    name: "Asador Horno vertical 2 en 1",
+    description: "Horno asador vertical de tambor con tres niveles revestidos en ladrillos refractarios. Abajo: cámara de fuego. Medio: funciona como horno por calor inferior y superior. Arriba: parrilla para asar. Permite cocinar al horno y a la parrilla al mismo tiempo, con excelente retención de calor y bajo consumo.",
+    price: 200.000,
     category: "Fogoneros",
     image: "@assets/hero2.png",
-    features: ["Chapa calada", "Pintura alta temperatura", "Incluye estaca pequeña"]
+    features: ["Tambor vertical", "Vajo consumo", "Incluye parrilla"]
   },
   {
     id: 5,

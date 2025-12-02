@@ -2,9 +2,35 @@ import { Product } from "@/lib/data";
 import { motion } from "framer-motion";
 import { Eye, Check } from "lucide-react";
 import { useMemo } from "react";
-import product1Img from "@assets/generated_images/tamborCompleto.jpg";
-import product2Img from "@assets/generated_images/rectangular.png";
-import product3Img from "@assets/generated_images/medioTambor.png"; // Fallback
+// Use dynamic imports so we don't have to import each image manually.
+// We'll load all images from the generated_images folder at build time
+// and map them by filename. Ensure `product.image` contains the filename
+// (e.g. `rectangular.png`) or adapt the key used below.
+// Note: use a relative path from this file to the `attached_assets` folder
+// so Vite can resolve the glob correctly.
+const imageModules = import.meta.glob(
+  '../../../../attached_assets/generated_images/*.{png,jpg,jpeg,svg}',
+  { eager: true },
+) as Record<string, { default: string }>;
+
+const imageMap: Record<string, string> = Object.fromEntries(
+  Object.entries(imageModules).map(([path, mod]) => {
+    const filename = path.split('/').pop() || path;
+    return [filename, (mod as any).default as string];
+  }),
+);
+
+const fallbackImage = imageMap['medioTambor.png'] || Object.values(imageMap)[0] || '';
+
+// Legacy mapping for keys used in `products` data (e.g. '@assets/product1.png')
+const legacyImageKeys: Record<string, string> = {
+  '@assets/product1.png': 'tamborCompleto.jpg',
+  '@assets/product2.png': 'rectangular.png',
+  '@assets/product3.png': 'medioTambor.png',
+  '@assets/hero2.png': 'tamborHornoVertical.jpeg',
+  '@assets/workshop.png': 'metal_workshop_interior.png',
+  '@assets/hero1.png': 'stainless_steel_parrilla_grill.png',
+};
 
 interface ProductCardProps {
   product: Product;
@@ -17,9 +43,18 @@ export function ProductCard({ product, onOpen, isSelected, onSelect }: ProductCa
     
   // Simple image mapping based on ID or name since we don't have a real DB
   const imageSrc = useMemo(() => {
-    if (product.image.includes("product1")) return product1Img;
-    if (product.image.includes("product2")) return product2Img;
-    return product3Img;
+    // Expecting product.image to be a filename (e.g. 'rectangular.png')
+    if (!product.image) return fallbackImage;
+    // If product.image already holds a full URL/path (startsWith('/') or 'http'), use it directly
+    if (product.image.startsWith('/') || product.image.startsWith('http')) return product.image;
+    // If it's a legacy key like '@assets/product1.png', map it to a real filename
+    if (legacyImageKeys[product.image]) {
+      const fname = legacyImageKeys[product.image];
+      return imageMap[fname] || fallbackImage;
+    }
+    // If product.image contains a slash, take the basename
+    const basename = product.image.includes('/') ? product.image.split('/').pop()! : product.image;
+    return imageMap[basename] || fallbackImage;
   }, [product.image]);
 
   return (

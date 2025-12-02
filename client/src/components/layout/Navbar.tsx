@@ -96,58 +96,69 @@ export function Navbar() {
         </button>
       </div>
 
-      {/* Mobile Menu */}
-      {/* Mobile Menu */}
-{isOpen &&
-  createPortal(
-    <div className="fixed inset-0 z-[9999] md:hidden">
-      {/* Backdrop that captures clicks - calm gray */}
-      <div
-        className="absolute inset-0 bg-gray-700/95"
-        onClick={() => setIsOpen(false)}
-      />
+      {/* Mobile Menu (animated) */}
+      {isOpen && createPortal(
+        <div className="fixed inset-0 z-[9999] md:hidden">
+          {/* Backdrop that captures clicks - calm gray (fade) */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: isOpen ? 1 : 0 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.22 }}
+            className="absolute inset-0 bg-gray-700/95"
+            onClick={() => setIsOpen(false)}
+          />
 
-      <div
-        className="absolute inset-0 text-white flex flex-col p-8 gap-6 pointer-events-auto z-[10000]"
-        onClick={(e) => e.stopPropagation()}
-      >
-        {/* Close button inside overlay (visible) */}
-        <button
-          aria-label="Cerrar menú"
-          onClick={() => setIsOpen(false)}
-          className="absolute top-4 right-4 z-[10001] p-2 rounded-full bg-white/10 text-white hover:bg-white/20"
-        >
-          <X size={22} />
-        </button>
-        {navLinks.map((link) => (
-          <Link key={link.path} href={link.path}>
-            <a
-              className={`text-2xl font-heading font-bold uppercase tracking-wide ${
-                location === link.path ? "text-primary" : "text-white"
-              }`}
-            >
-              {link.name}
-            </a>
-          </Link>
-        ))}
-        <div className="mt-auto flex flex-col gap-4">
-          <a
-            href="https://wa.me/5493492588185"
-            target="_blank"
-            rel="noreferrer"
-            className="bg-green-600 text-white p-4 rounded-lg font-bold text-center uppercase flex items-center justify-center gap-2"
-          >
-            <Phone size={20} /> WhatsApp
-          </a>
-          <div className="flex items-center gap-2 text-gray-300">
-            <MapPin size={18} />
-            <span>Erasmo Poggi 483, Rafaela</span>
-          </div>
-        </div>
-      </div>
-    </div>,
-    document.body,
-  )}
+          <AnimatePresence>
+            {isOpen && (
+              <motion.div
+                key="mobile-panel"
+                initial={{ y: -30, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                exit={{ y: -30, opacity: 0 }}
+                transition={{ duration: 0.33, ease: [0.25, 0.8, 0.25, 1] }}
+                className="absolute inset-0 text-white flex flex-col p-8 gap-6 pointer-events-auto z-[10000]"
+                onClick={(e) => e.stopPropagation()}
+              >
+                {/* Close button inside overlay (visible) */}
+                <button
+                  aria-label="Cerrar menú"
+                  onClick={() => setIsOpen(false)}
+                  className="absolute top-4 right-4 z-[10001] p-2 rounded-full bg-white/10 text-white hover:bg-white/20"
+                >
+                  <X size={22} />
+                </button>
+                {navLinks.map((link) => (
+                  <Link key={link.path} href={link.path}>
+                    <a
+                      className={`text-2xl font-heading font-bold uppercase tracking-wide ${
+                        location === link.path ? "text-primary" : "text-white"
+                      }`}
+                    >
+                      {link.name}
+                    </a>
+                  </Link>
+                ))}
+                <div className="mt-auto flex flex-col gap-4">
+                  <a
+                    href="https://wa.me/5493492588185"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="bg-green-600 text-white p-4 rounded-lg font-bold text-center uppercase flex items-center justify-center gap-2"
+                  >
+                    <Phone size={20} /> WhatsApp
+                  </a>
+                  <div className="flex items-center gap-2 text-gray-300">
+                    <MapPin size={18} />
+                    <span>Erasmo Poggi 483, Rafaela</span>
+                  </div>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>,
+        document.body,
+      )}
 
     </header>
   );

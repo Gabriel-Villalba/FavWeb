@@ -40,7 +40,7 @@ export default function Catalog() {
   const handleBulkConsult = () => {
     const itemsList = selectedItems.map(i => `- ${i.name}`).join('\n');
     const message = `Hola! Me interesan los siguientes productos:\n${itemsList}\n\nQuisiera más información.`;
-    window.open(`https://wa.me/5493492000000?text=${encodeURIComponent(message)}`, '_blank');
+    window.open(`https://wa.me/5493492588185?text=${encodeURIComponent(message)}`, '_blank');
   };
 
   return (

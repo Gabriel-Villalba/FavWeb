@@ -28,17 +28,17 @@ export function ProductModal({ product, isOpen, onClose }: ProductModalProps) {
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-4xl p-0 overflow-hidden bg-card border-none">
-        <div className="grid md:grid-cols-2 h-full">
-          <div className="h-64 md:h-auto bg-secondary/30 relative">
-             <img 
-               src={imageSrc} 
-               alt={product.name}
-               className="w-full h-full object-cover"
-             />
-          </div>
-          
-          <div className="p-6 md:p-10 flex flex-col h-full">
+      <DialogContent className="max-w-4xl p-0 overflow-hidden bg-card border-none max-w-[95vw] max-h-[90vh]">
+          <div className="grid md:grid-cols-2 h-full max-h-[90vh]">
+            <div className="h-64 md:h-auto bg-secondary/30 relative flex items-center justify-center overflow-hidden">
+               <img 
+                 src={imageSrc} 
+                 alt={product.name}
+                 className="w-full h-full object-contain max-h-[60vh] md:max-h-full"
+               />
+            </div>
+
+            <div className="p-6 md:p-10 flex flex-col h-full overflow-y-auto">
             <div className="mb-auto">
                 <span className="text-sm text-primary font-bold uppercase tracking-wider block mb-2">
                     {product.category}
@@ -68,20 +68,22 @@ export function ProductModal({ product, isOpen, onClose }: ProductModalProps) {
                 </div>
             </div>
 
-            <div className="flex flex-col gap-3 mt-6">
+            <div className="mt-6 pt-4 border-t pt-6">
+              <div className="flex flex-col gap-3 sticky bottom-0 bg-card py-4">
                 <Button 
-                    asChild 
-                    size="lg" 
-                    className="w-full bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold uppercase tracking-wide"
+                  asChild 
+                  size="lg" 
+                  className="w-full bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold uppercase tracking-wide"
                 >
-                    <a href={whatsappLink} target="_blank" rel="noreferrer">
-                        <MessageCircle className="mr-2 h-5 w-5" />
-                        Consultar por WhatsApp
-                    </a>
+                  <a href={whatsappLink} target="_blank" rel="noreferrer">
+                    <MessageCircle className="mr-2 h-5 w-5" />
+                    Consultar por WhatsApp
+                  </a>
                 </Button>
                 <Button variant="outline" onClick={onClose} className="w-full uppercase tracking-wide font-bold">
-                    Volver al Catálogo
+                  Volver al Catálogo
                 </Button>
+              </div>
             </div>
           </div>
         </div>

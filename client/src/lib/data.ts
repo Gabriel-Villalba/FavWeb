@@ -16,7 +16,7 @@ export const products: Product[] = [
     name: "Asador tambor completo",
     description: "Simple, práctico y rendidor. Perfecto para quienes aman el sabor del asado a la leña y buscan durabilidad en su inversión. Un tambor, mil momentos compartidos",
     price: 195000,
-    category: "Parrillas",
+    category: "Asadores",
     image: "@assets/product1.png", // Will map to generated assets
     features: ["Hierro macizo", "Portátil", "Facil limpieza", "Ruedas reforzadas"]
   },
@@ -33,8 +33,8 @@ export const products: Product[] = [
     id: 3,
     name: "Medio Tambor",
     description: "Compacto, pero poderoso. Ideal para espacios chicos y departamentos. Y de yapa  ¡viene con parrilla de regalo! Porque el fuego se disfruta en todos los tamaños .",
-    price: 100.000,
-    category: "Parrillas",
+    price: 100000,
+    category: "Asadores",
     image: "@assets/product3.png",
     features: ["Pequeño", "Liviana", "Incluye parrilla", "Fácil limpieza"]
   },
@@ -42,8 +42,8 @@ export const products: Product[] = [
     id: 4,
     name: "Asador Horno vertical 2 en 1",
     description: "Horno asador vertical de tambor con tres niveles revestidos en ladrillos refractarios. Abajo: cámara de fuego. Medio: funciona como horno por calor inferior y superior. Arriba: parrilla para asar. Permite cocinar al horno y a la parrilla al mismo tiempo, con excelente retención de calor y bajo consumo.",
-    price: 200.000,
-    category: "Fogoneros",
+    price: 200000,
+    category: "Asador Horno",
     image: "@assets/hero2.png",
     features: ["Tambor vertical", "Vajo consumo", "Incluye parrilla"]
   },

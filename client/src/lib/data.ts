@@ -18,7 +18,7 @@ export const products: Product[] = [
     price: 195000,
     category: "Asadores",
     image: "@assets/product1.png", // Will map to generated assets
-    features: ["Hierro macizo", "Portátil", "Facil limpieza", "Ruedas reforzadas"]
+    features: ["Stock permanente", "Portátil", "Fácil limpieza", "Ruedas reforzadas"]
   },
   {
     id: 2,
@@ -27,7 +27,7 @@ export const products: Product[] = [
     price: 240000,
     category: "Asadores",
     image: "@assets/product2.png",
-    features: ["Hierro macizo", "Portátil", "Liviano", "Tabla rebatible"]
+    features: ["Consultar stock", "Portátil", "Liviano", "Tabla rebatible"]
   },
   {
     id: 3,
@@ -36,7 +36,7 @@ export const products: Product[] = [
     price: 100000,
     category: "Asadores",
     image: "@assets/product3.png",
-    features: ["Pequeño", "Liviana", "Incluye parrilla", "Fácil limpieza"]
+    features: ["Consultar stock","Pequeño", "Incluye parrilla", "Fácil limpieza"]
   },
   {
     id: 4,
@@ -45,43 +45,43 @@ export const products: Product[] = [
     price: 200000,
     category: "Asador Horno",
     image: "@assets/hero2.png",
-    features: ["Tambor vertical", "Vajo consumo", "Incluye parrilla"]
+    features: ["A pedido", "Vajo consumo", "Incluye parrilla"]
   },
   {
     id: 5,
-    name: "Kit Parrillero Pro",
-    description: "Set completo de herramientas: Pala, atizador, pinza y tenedor. Todo lo que necesitas para dominar el fuego.",
-    price: 45000,
+    name: "Palita y atizador",
+    description: "Set completo de herramientas: Pala y atizador. Todo lo que necesitas para dominar el fuego.",
+    price: 20000,
     category: "Accesorios",
     image: "@assets/workshop.png", // Placeholder
-    features: ["Mango de madera", "Hierro 8mm", "Largo 80cm"]
+    features: ["Stock permanente","Mango de madera", "Hierro 8mm", "Largo 80cm"]
   },
   {
     id: 6,
-    name: "Disco de Arado Original",
-    description: "Disco de arado auténtico curado, con patas desmontables y tapa. Para los mejores guisos y pollos al disco.",
-    price: 95000,
-    category: "Discos",
+    name: "Parrilla",
+    description: "Parrilla hierro, 45 cm x 75 cm, con sector achuras.",
+    price: 45000,
+    category: "accesorios",
     image: "@assets/hero1.png", // Placeholder
-    features: ["Acero boro", "Patas a rosca", "Tapa con chimenea"]
+    features: ["Stock permanente","Hierro ángulo", "Patas 13 cm", "Hierro 6mm"]
   },
   {
     id: 7,
-    name: "Brasero Uruguayo",
+    name: "Brasero",
     description: "Cesta leñera tipo uruguayo para generar brasas de forma constante y separada de la carne.",
-    price: 55000,
+    price: 35000,
     category: "Accesorios",
-    image: "@assets/product1.png", // Placeholder
-    features: ["Hierro reforzado", "Separa brasas", "Alta durabilidad"]
+    image: "@assets/hero4.png", // Placeholder
+    features: ["Stock permanente","Hierro reforzado", "Separa brasas", "Alta durabilidad"]
   },
   {
     id: 8,
-    name: "Plancheta 2 Hornallas",
-    description: "Plancha de hierro para dos hornallas. Cocina vegetales, carnes y huevos de forma práctica.",
-    price: 35000,
-    category: "Accesorios",
-    image: "@assets/product2.png", // Placeholder
-    features: ["Hierro 3.2mm", "Bordes plegados", "Apta fuego directo"]
+    name: "Calentador de marcas de ganado vacuno",
+    description: "El Calentador de Marcas a gas 2/4 marcas es la solución ideal para el marcado de ganado, diseñado específicamente para facilitar el trabajo en el campo",
+    price: 110000,
+    category: "Herramientas",
+    image: "@assets/product4.png", // Placeholder
+    features: ["Chapa 1.25 mm", "A gas envasado", "Dos marcas"]
   },
   {
     id: 9,

@@ -9,7 +9,22 @@ export default function Home() {
   return (
     <Layout>
       <Carousel />
-      
+      <section className="py-24 bg-secondary relative overflow-hidden">
+        <div className="absolute inset-0 opacity-5 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
+        <div className="container mx-auto px-4 text-center relative z-10">
+          <h2 className="text-2xl md:text-5xl font-heading font-bold mb-6 uppercase">
+            ¿Listo para mejorar tus asados?
+          </h2>
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
+            Explora nuestro catálogo completo y encontrá la parrilla que se adapta a tu estilo de cocina.
+          </p>
+          <Link href="/catalogo">
+            <Button size="lg" className="text-lg px-8 py-6 font-bold uppercase tracking-wide bg-primary hover:bg-primary/90 text-white">
+              Ver Catálogo Completo <ArrowRight className="ml-2" />
+            </Button>
+          </Link>
+        </div>
+      </section>
       {/* Features Section */}
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
@@ -40,22 +55,7 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 bg-secondary relative overflow-hidden">
-        <div className="absolute inset-0 opacity-5 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
-        <div className="container mx-auto px-4 text-center relative z-10">
-          <h2 className="text-4xl md:text-5xl font-heading font-bold mb-6 uppercase">
-            ¿Listo para mejorar tus asados?
-          </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
-            Explora nuestro catálogo completo y encontrá la parrilla que se adapta a tu estilo de cocina.
-          </p>
-          <Link href="/catalogo">
-            <Button size="lg" className="text-lg px-8 py-6 font-bold uppercase tracking-wide bg-primary hover:bg-primary/90 text-white">
-              Ver Catálogo Completo <ArrowRight className="ml-2" />
-            </Button>
-          </Link>
-        </div>
-      </section>
+      
     </Layout>
   );
 }

@@ -1,0 +1,6 @@
+# robots.txt for Parrillas & Asadores Gabriel
+# Sitemap points to production domain
+User-agent: *
+Allow: /
+
+Sitemap: https://www.favstore.com.ar/sitemap.xml

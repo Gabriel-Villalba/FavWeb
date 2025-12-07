@@ -28,8 +28,10 @@ const legacyImageKeys: Record<string, string> = {
   '@assets/product2.png': 'rectangular.png',
   '@assets/product3.png': 'medioTambor.png',
   '@assets/hero2.png': 'tamborHornoVertical.jpeg',
-  '@assets/workshop.png': 'metal_workshop_interior.png',
-  '@assets/hero1.png': 'stainless_steel_parrilla_grill.png',
+  '@assets/workshop.png': 'palitaYatizador.png',
+  '@assets/hero1.png': 'parrilla.png',
+  '@assets/hero4.png': 'brasero.png',
+  '@assets/product4.png': 'calentador.png'
 };
 
 interface ProductCardProps {

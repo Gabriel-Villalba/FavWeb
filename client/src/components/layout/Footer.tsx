@@ -56,7 +56,7 @@ export function Footer() {
         </div>
         
         <div className="border-t border-border pt-8 text-center text-sm text-muted-foreground">
-          <p>&copy; {new Date().getFullYear()} Parrillas & Asadores Gabriel. Todos los derechos reservados.</p>
+          <p>&copy; {new Date().getFullYear()} Parrillas & Asadores. Todos los derechos reservados.</p>
         </div>
       </div>
     </footer>

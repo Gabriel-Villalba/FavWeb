@@ -31,7 +31,8 @@ const legacyImageKeys: Record<string, string> = {
   '@assets/workshop.png': 'palitaYatizador.png',
   '@assets/hero1.png': 'parrilla.png',
   '@assets/hero4.png': 'brasero.png',
-  '@assets/product5.png': 'varilla.png'
+  '@assets/product5.png': 'varilla.png',
+  '@assets/product4.png': 'calentador.png'
   
 };
 

@@ -79,18 +79,18 @@ export const products: Product[] = [
     name: "Calentador de marcas de ganado vacuno",
     description: "El Calentador de Marcas a gas 2/4 marcas es la solución ideal para el marcado de ganado, diseñado específicamente para facilitar el trabajo en el campo",
     price: 110000,
-    category: "Herramientas",
+    category: "Agro & Ganadería",
     image: "@assets/product4.png", // Placeholder
     features: ["Chapa 1.25 mm", "A gas envasado", "Dos marcas"]
   },
   {
     id: 9,
-    name: "Parrilla Rodante Full",
-    description: "Parrilla completa con tejuelas refractarias, tapa y mesada lateral de madera.",
-    price: 380000,
-    category: "Parrillas",
-    image: "@assets/product3.png", // Placeholder
-    features: ["Tejuelas refractarias", "Tapa corrediza", "Mesada lateral"]
+    name: "Varilla Boyero",
+    description: " Varilla de hierro liso con rulo de 8 mm de grosor y de 105 cm de altura, tiene 15 cm para ser enterrado en el suelo por lo tanto el rulo esta a 90 cm del suelo una vez colocada, las dos puntas tienen una apertura de 10 cm.",
+    price: 4000,
+    category: "Agro & Ganadería",
+    image: "@assets/product5.png", // Placeholder
+    features: ["Hierro 8 mm", "Rulo aislado","Precio por unidad", "Paquete x 5 unidades"]
   },
 ];
 

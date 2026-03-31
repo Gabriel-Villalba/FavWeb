@@ -1,0 +1,121 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  /* === FAV ASADORES - FUEGO & CARBÓN THEME === */
+  --color-primary: hsl(22 100% 52%);
+  --color-primary-foreground: hsl(0 0% 100%);
+
+  --color-background: hsl(20 8% 7%);
+  --color-foreground: hsl(30 15% 92%);
+
+  --color-card: hsl(20 10% 10%);
+  --color-card-foreground: hsl(30 15% 92%);
+
+  --color-popover: hsl(20 10% 10%);
+  --color-popover-foreground: hsl(30 15% 92%);
+
+  --color-secondary: hsl(20 12% 14%);
+  --color-secondary-foreground: hsl(30 12% 80%);
+
+  --color-muted: hsl(20 8% 22%);
+  --color-muted-foreground: hsl(30 10% 58%);
+
+  --color-accent: hsl(42 100% 55%);
+  --color-accent-foreground: hsl(20 8% 7%);
+
+  --color-destructive: hsl(354 70% 52%);
+  --color-destructive-foreground: hsl(0 0% 100%);
+
+  --color-border: hsl(20 15% 17%);
+  --color-input: hsl(20 10% 14%);
+  --color-ring: hsl(22 100% 52%);
+
+  --font-sans: 'Barlow', system-ui, sans-serif;
+  --font-heading: 'Barlow Condensed', Impact, sans-serif;
+
+  --radius: 0.5rem;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,500;0,600;1,400&family=Barlow+Condensed:wght@600;700;800;900&display=swap');
+
+@layer base {
+  * { @apply border-border; }
+  html { scroll-behavior: smooth; }
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+    background-image:
+      radial-gradient(ellipse at 15% 85%, hsl(22 60% 12% / 0.45) 0%, transparent 55%),
+      radial-gradient(ellipse at 85% 15%, hsl(42 80% 10% / 0.25) 0%, transparent 50%);
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading font-bold uppercase tracking-wide;
+  }
+  ::selection { background: hsl(22 100% 52% / 0.35); color: hsl(30 15% 96%); }
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: hsl(20 8% 7%); }
+  ::-webkit-scrollbar-thumb { background: hsl(22 80% 30%); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: hsl(22 100% 52%); }
+}
+
+@keyframes floatUp {
+  0% { opacity: 0; transform: translateY(16px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+@keyframes emberGlow {
+  0%, 100% { box-shadow: 0 0 12px 2px hsl(22 100% 52% / 0.2), 0 0 30px 4px hsl(22 100% 52% / 0.06); }
+  50% { box-shadow: 0 0 22px 5px hsl(22 100% 52% / 0.42), 0 0 55px 10px hsl(42 100% 55% / 0.12); }
+}
+@keyframes pulseEmber {
+  0%, 100% { box-shadow: 0 0 0 0 hsl(22 100% 52% / 0.4); }
+  50% { box-shadow: 0 0 0 10px hsl(22 100% 52% / 0); }
+}
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@layer utilities {
+  .animate-float-up { animation: floatUp 0.6s ease-out forwards; }
+  .animate-ember-glow { animation: emberGlow 3s ease-in-out infinite; }
+  .animate-pulse-ember { animation: pulseEmber 2s ease-in-out infinite; }
+  .animate-slide-in-left { animation: slideInLeft 0.5s ease-out forwards; }
+
+  .bg-fire-gradient {
+    background: linear-gradient(135deg, hsl(22 100% 52% / 0.1) 0%, hsl(42 100% 55% / 0.05) 50%, transparent 100%);
+  }
+  .text-fire {
+    color: hsl(22 100% 58%);
+    text-shadow: 0 0 18px hsl(22 100% 52% / 0.45), 0 0 38px hsl(42 100% 55% / 0.2);
+  }
+  .text-ember {
+    color: hsl(42 100% 65%);
+    text-shadow: 0 0 14px hsl(42 100% 55% / 0.38);
+  }
+  .divider-fire {
+    height: 2px;
+    background: linear-gradient(90deg, transparent, hsl(22 100% 52%), hsl(42 100% 55%), hsl(22 100% 52%), transparent);
+  }
+  .badge-fire {
+    background: hsl(22 100% 52% / 0.12);
+    color: hsl(22 100% 65%);
+    border: 1px solid hsl(22 100% 52% / 0.28);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.68rem;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 3px;
+  }
+  .metal-sheen {
+    background-image: repeating-linear-gradient(
+      60deg,
+      transparent,
+      transparent 3px,
+      hsl(0 0% 100% / 0.013) 3px,
+      hsl(0 0% 100% / 0.013) 6px
+    );
+  }
+}

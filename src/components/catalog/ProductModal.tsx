@@ -5,18 +5,32 @@ import { MessageCircle, CheckCircle2, Flame, X } from "lucide-react";
 import { useMemo } from "react";
 
 const imageModules = import.meta.glob(
-  '../../../../attached_assets/generated_images/*.{png,jpg,jpeg,svg}',
+  '../../assets/*.{png,jpg,jpeg,svg}',
   { eager: true },
 ) as Record<string, { default: string }>;
 
 const imageMap: Record<string, string> = Object.fromEntries(
-  Object.entries(imageModules).map(([path, mod]) => {
+  Object.entries(imageModules).flatMap(([path, mod]) => {
     const filename = path.split('/').pop() || path;
-    return [filename, (mod as any).default as string];
+    const lastDot = filename.lastIndexOf('.');
+    const base = lastDot === -1 ? filename : filename.slice(0, lastDot);
+    const ext = lastDot === -1 ? '' : filename.slice(lastDot + 1);
+    const cleanBase = base.replace(/-[A-Za-z0-9]{6,}$/, '');
+    const cleanFilename = ext ? `${cleanBase}.${ext}` : cleanBase;
+    const url = (mod as any).default as string;
+    return [
+      [filename, url],
+      [cleanFilename, url],
+      [cleanBase, url],
+    ];
   }),
 );
 
-const fallbackImage = imageMap['medioTambor.png'] || Object.values(imageMap)[0] || '';
+const fallbackImage =
+  imageMap['medioTambor.png'] ||
+  imageMap['medioTambor'] ||
+  Object.values(imageMap)[0] ||
+  '';
 
 const legacyImageKeys: Record<string, string> = {
   '@assets/product1.png': 'tamborCompleto.jpg',

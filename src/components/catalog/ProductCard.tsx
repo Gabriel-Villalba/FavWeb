@@ -4,7 +4,10 @@ import { Eye, Check, Flame } from "lucide-react";
 import { useMemo } from "react";
 
 const imageModules = import.meta.glob(
-  '../../assets/*.{png,jpg,jpeg,svg}',
+  [
+    '../../assets/*.{png,jpg,jpeg,svg}',
+    '../../../attached_assets/generated_images/*.{png,jpg,jpeg,svg}',
+  ],
   { eager: true },
 ) as Record<string, { default: string }>;
 

@@ -45,7 +45,7 @@ export const products: Product[] = [
     price: 200000,
     category: "Asador Horno",
     image: "@assets/hero2.png",
-    features: ["A pedido", "Vajo consumo", "Incluye parrilla"]
+    features: ["A pedido", "Bajo consumo", "Incluye parrilla"]
   },
   {
     id: 5,

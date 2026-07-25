@@ -24,7 +24,7 @@ export const products: Product[] = [
     id: 2,
     name: "Asador rectangular Premium",
     description: "El lujo del asador moderno: amplio, cómodo y con tabli­ta de regalo para cortar y servir. Perfecto para el asador detallista que cuida cada punto del fuego.",
-    price: 240000,
+    price: 280000,
     category: "Asadores",
     image: "@assets/product2.png",
     features: ["Consultar stock", "Portátil", "Liviano", "Tabla rebatible"]
@@ -69,7 +69,7 @@ export const products: Product[] = [
     id: 7,
     name: "Brasero",
     description: "Cesta leñera tipo uruguayo para generar brasas de forma constante y separada de la carne.",
-    price: 35000,
+    price: 38000,
     category: "Accesorios",
     image: "@assets/hero4.png", // Placeholder
     features: ["Stock permanente","Hierro reforzado", "Separa brasas", "Alta durabilidad"]
@@ -78,7 +78,7 @@ export const products: Product[] = [
     id: 8,
     name: "Calentador de marcas de ganado vacuno",
     description: "El Calentador de Marcas a gas 2/4 marcas es la solución ideal para el marcado de ganado, diseñado específicamente para facilitar el trabajo en el campo",
-    price: 110000,
+    price: 120000,
     category: "Agro & Ganadería",
     image: "@assets/product4.png", // Placeholder
     features: ["Chapa 1.25 mm", "A gas envasado", "Dos marcas"]

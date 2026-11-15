@@ -1,51 +1,9 @@
 import { Product } from "@/lib/data";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
-import { MessageCircle, CheckCircle2, Flame, X } from "lucide-react";
+import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import { MessageCircle, CheckCircle2, Flame } from "lucide-react";
 import { useMemo } from "react";
-
-const imageModules = import.meta.glob(
-  [
-    '../../assets/*.{png,jpg,jpeg,svg}',
-    '../../../attached_assets/generated_images/*.{png,jpg,jpeg,svg}',
-  ],
-  { eager: true },
-) as Record<string, { default: string }>;
-
-const imageMap: Record<string, string> = Object.fromEntries(
-  Object.entries(imageModules).flatMap(([path, mod]) => {
-    const filename = path.split('/').pop() || path;
-    const lastDot = filename.lastIndexOf('.');
-    const base = lastDot === -1 ? filename : filename.slice(0, lastDot);
-    const ext = lastDot === -1 ? '' : filename.slice(lastDot + 1);
-    const cleanBase = base.replace(/-[A-Za-z0-9]{6,}$/, '');
-    const cleanFilename = ext ? `${cleanBase}.${ext}` : cleanBase;
-    const url = (mod as any).default as string;
-    return [
-      [filename, url],
-      [cleanFilename, url],
-      [cleanBase, url],
-    ];
-  }),
-);
-
-const fallbackImage =
-  imageMap['medioTambor.png'] ||
-  imageMap['medioTambor'] ||
-  Object.values(imageMap)[0] ||
-  '';
-
-const legacyImageKeys: Record<string, string> = {
-  '@assets/product1.png': 'tamborCompleto.jpg',
-  '@assets/product2.png': 'rectangular.png',
-  '@assets/product3.png': 'medioTambor.png',
-  '@assets/hero2.png': 'tamborHornoVertical.jpeg',
-  '@assets/workshop.png': 'palitaYatizador.png',
-  '@assets/hero1.png': 'parrilla.png',
-  '@assets/hero4.png': 'brasero.png',
-  '@assets/product4.png': 'calentador.png',
-  '@assets/product5.png': 'varilla.png',
-};
+import { ProductImageCarousel } from "@/components/catalog/ProductImageCarousel";
+import { getProductImages } from "@/lib/productImages";
 
 interface ProductModalProps {
   product: Product | null;
@@ -54,18 +12,11 @@ interface ProductModalProps {
 }
 
 export function ProductModal({ product, isOpen, onClose }: ProductModalProps) {
+  const productImages = useMemo(
+    () => (product ? getProductImages(product) : []),
+    [product],
+  );
   if (!product) return null;
-
-  const imageSrc = useMemo(() => {
-    if (!product.image) return fallbackImage;
-    if (product.image.startsWith('/') || product.image.startsWith('http')) return product.image;
-    if (legacyImageKeys[product.image]) {
-      const fname = legacyImageKeys[product.image];
-      return imageMap[fname] || fallbackImage;
-    }
-    const basename = product.image.includes('/') ? product.image.split('/').pop()! : product.image;
-    return imageMap[basename] || fallbackImage;
-  }, [product.image]);
 
   const whatsappMessage = `Hola! Estoy interesado en el producto ${product.name} ($${product.price}) que vi en la web. ¿Está disponible?`;
   const whatsappLink = `https://wa.me/5493492588185?text=${encodeURIComponent(whatsappMessage)}`;
@@ -77,15 +28,16 @@ export function ProductModal({ product, isOpen, onClose }: ProductModalProps) {
           
           {/* Image side */}
           <div className="relative h-64 md:h-auto bg-secondary/40 overflow-hidden flex items-center justify-center">
+            <ProductImageCarousel
+              key={product.id}
+              images={productImages}
+              alt={product.name}
+              className="h-full w-full"
+              imageClassName="w-full h-full object-contain max-h-[60vh] md:max-h-full relative z-0 p-4"
+            />
             {/* Fire overlay */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent z-10 pointer-events-none" />
             <div className="absolute inset-0 bg-gradient-to-br from-primary/8 via-transparent to-transparent z-10 pointer-events-none" />
-            
-            <img
-              src={imageSrc}
-              alt={product.name}
-              className="w-full h-full object-contain max-h-[60vh] md:max-h-full relative z-0 p-4"
-            />
 
             {/* Bottom label */}
             <div className="absolute bottom-4 left-4 z-20">
@@ -116,7 +68,7 @@ export function ProductModal({ product, isOpen, onClose }: ProductModalProps) {
               </div>
 
               {/* Description */}
-              <DialogDescription className="text-sm text-muted-foreground leading-relaxed mb-7">
+              <DialogDescription className="text-sm text-muted-foreground leading-relaxed mb-7 whitespace-pre-line">
                 {product.description}
               </DialogDescription>
 

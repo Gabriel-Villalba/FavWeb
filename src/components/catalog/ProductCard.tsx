@@ -2,49 +2,8 @@ import { Product } from "@/lib/data";
 import { motion } from "framer-motion";
 import { Eye, Check, Flame } from "lucide-react";
 import { useMemo } from "react";
-
-const imageModules = import.meta.glob(
-  [
-    '../../assets/*.{png,jpg,jpeg,svg}',
-    '../../../attached_assets/generated_images/*.{png,jpg,jpeg,svg}',
-  ],
-  { eager: true },
-) as Record<string, { default: string }>;
-
-const imageMap: Record<string, string> = Object.fromEntries(
-  Object.entries(imageModules).flatMap(([path, mod]) => {
-    const filename = path.split('/').pop() || path;
-    const lastDot = filename.lastIndexOf('.');
-    const base = lastDot === -1 ? filename : filename.slice(0, lastDot);
-    const ext = lastDot === -1 ? '' : filename.slice(lastDot + 1);
-    const cleanBase = base.replace(/-[A-Za-z0-9]{6,}$/, '');
-    const cleanFilename = ext ? `${cleanBase}.${ext}` : cleanBase;
-    const url = (mod as any).default as string;
-    return [
-      [filename, url],
-      [cleanFilename, url],
-      [cleanBase, url],
-    ];
-  }),
-);
-
-const fallbackImage =
-  imageMap['medioTambor.png'] ||
-  imageMap['medioTambor'] ||
-  Object.values(imageMap)[0] ||
-  '';
-
-const legacyImageKeys: Record<string, string> = {
-  '@assets/product1.png': 'tamborCompleto.jpg',
-  '@assets/product2.png': 'rectangular.png',
-  '@assets/product3.png': 'medioTambor.png',
-  '@assets/hero2.png': 'tamborHornoVertical.jpeg',
-  '@assets/workshop.png': 'palitaYatizador.png',
-  '@assets/hero1.png': 'parrilla.png',
-  '@assets/hero4.png': 'brasero.png',
-  '@assets/product5.png': 'varilla.png',
-  '@assets/product4.png': 'calentador.png',
-};
+import { ProductImageCarousel } from "@/components/catalog/ProductImageCarousel";
+import { getProductImages } from "@/lib/productImages";
 
 interface ProductCardProps {
   product: Product;
@@ -74,16 +33,7 @@ export function ProductCard({ product, onOpen, isSelected, onSelect }: ProductCa
     return 0;
   }, [product.price]);
 
-  const imageSrc = useMemo(() => {
-    if (!product.image) return fallbackImage;
-    if (product.image.startsWith('/') || product.image.startsWith('http')) return product.image;
-    if (legacyImageKeys[product.image]) {
-      const fname = legacyImageKeys[product.image];
-      return imageMap[fname] || fallbackImage;
-    }
-    const basename = product.image.includes('/') ? product.image.split('/').pop()! : product.image;
-    return imageMap[basename] || fallbackImage;
-  }, [product.image]);
+  const productImages = useMemo(() => getProductImages(product), [product.images]);
 
   return (
     <motion.div
@@ -98,10 +48,12 @@ export function ProductCard({ product, onOpen, isSelected, onSelect }: ProductCa
     >
       {/* Image */}
       <div className="aspect-square relative overflow-hidden bg-secondary/40">
-        <img
-          src={imageSrc}
+        <ProductImageCarousel
+          key={product.id}
+          images={productImages}
           alt={product.name}
-          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-108"
+          className="h-full w-full"
+          imageClassName="w-full h-full object-cover transition-transform duration-500 group-hover:scale-108"
         />
         
         {/* Dark overlay + fire tint on hover */}

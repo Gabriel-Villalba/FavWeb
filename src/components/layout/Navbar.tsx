@@ -1,10 +1,24 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "wouter";
-import { Menu, X, Phone, Flame } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { Menu, X, Phone, ArrowUpRight } from "lucide-react";
+import { motion } from "framer-motion";
 import { createPortal } from "react-dom";
 import { navLinks } from "@/lib/data";
 import logoImage from "@assets/generated_images/iconFav.png";
+
+function Brand() {
+  return (
+    <span className="flex items-center gap-2.5">
+      <span className="grid h-10 w-10 place-items-center rounded-full bg-sun">
+        <img src={logoImage} alt="Logo" className="h-6 w-6 object-contain" />
+      </span>
+      <span className="flex flex-col leading-none">
+        <span className="font-heading text-xl font-extrabold tracking-tight">FAV</span>
+        <span className="text-[0.65rem] font-semibold text-muted-foreground">Asadores & Parrillas</span>
+      </span>
+    </span>
+  );
+}
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -29,48 +43,27 @@ export function Navbar() {
   }, [isOpen]);
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-400 ${
-        scrolled
-          ? "bg-background/95 backdrop-blur-2xl py-3 border-b border-primary/20 shadow-[0_4px_30px_hsl(22_100%_52%_/_0.08)]"
-          : "bg-background/70 backdrop-blur-xl py-5 border-b border-white/5"
-      }`}
-    >
-      <div className="container mx-auto px-4 flex items-center justify-between">
-        {/* Logo */}
+    <header className="fixed inset-x-0 top-0 z-50 px-3 pt-3 md:px-6">
+      <div
+        className={`mx-auto flex h-14 max-w-6xl items-center justify-between rounded-full border bg-white/85 pl-2 pr-2 backdrop-blur-xl transition-shadow duration-300 md:h-16 md:pl-3 md:pr-3 ${
+          scrolled ? "border-border shadow-soft" : "border-white/70 shadow-sm"
+        }`}
+      >
         <Link href="/">
-          <a className="flex items-center gap-3 group">
-            <div className="relative w-10 h-10 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center shadow-[0_0_16px_hsl(22_100%_52%_/_0.4)] group-hover:shadow-[0_0_24px_hsl(22_100%_52%_/_0.65)] transition-shadow duration-300">
-              <img src={logoImage} alt="Logo" className="w-6 h-6 object-contain" />
-              {/* ember dot */}
-              <span className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-accent animate-pulse-ember" />
-            </div>
-            <div className="flex flex-col leading-none">
-              <span className="font-heading font-900 text-xl uppercase tracking-[0.12em] text-foreground group-hover:text-fire transition-colors duration-200">
-                FAV
-              </span>
-              <span className="text-[0.6rem] text-muted-foreground uppercase tracking-[0.2em] font-medium">
-                Asadores & Parrillas
-              </span>
-            </div>
-          </a>
+          <a aria-label="FAV, ir al inicio"><Brand /></a>
         </Link>
 
-        {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden items-center gap-1 md:flex">
           {navLinks.map((link) => (
             <Link key={link.path} href={link.path}>
               <a
-                className={`relative text-xs font-heading font-700 uppercase tracking-[0.15em] transition-colors duration-200 pb-1 ${
+                className={`rounded-full px-4 py-2 text-sm font-semibold transition-colors ${
                   location === link.path
-                    ? "text-primary"
-                    : "text-muted-foreground hover:text-foreground"
+                    ? "bg-peach text-primary"
+                    : "text-muted-foreground hover:bg-secondary hover:text-foreground"
                 }`}
               >
                 {link.name}
-                {location === link.path && (
-                  <span className="absolute -bottom-0.5 left-0 right-0 h-px bg-gradient-to-r from-primary to-accent" />
-                )}
               </a>
             </Link>
           ))}
@@ -78,87 +71,69 @@ export function Navbar() {
             href="https://wa.me/5493492588185"
             target="_blank"
             rel="noreferrer"
-            className="relative overflow-hidden group inline-flex items-center gap-2 bg-primary hover:bg-primary/90 text-white px-5 py-2.5 rounded-md font-heading font-700 text-xs uppercase tracking-[0.12em] transition-all duration-300 shadow-[0_0_16px_hsl(22_100%_52%_/_0.35)] hover:shadow-[0_0_24px_hsl(22_100%_52%_/_0.55)]"
+            className="ml-2 inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-bold text-primary-foreground shadow-pop transition hover:-translate-y-0.5"
           >
-            <span className="absolute inset-0 bg-gradient-to-r from-primary via-accent/60 to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-            <Phone size={13} className="relative z-10" />
-            <span className="relative z-10">Contacto</span>
+            <Phone size={15} /> Contacto
           </a>
         </nav>
 
-        {/* Mobile Toggle */}
         <button
-          className="md:hidden p-2 text-foreground hover:text-primary transition-colors"
+          className="grid h-11 w-11 place-items-center rounded-full bg-secondary text-foreground md:hidden"
           onClick={() => setIsOpen(!isOpen)}
-          aria-label="Toggle menu"
+          aria-label="Abrir menú"
         >
-          {isOpen ? <X size={26} /> : <Menu size={26} />}
+          <Menu size={22} />
         </button>
       </div>
 
-      {/* Mobile Menu */}
       {isOpen && createPortal(
-        <div className="fixed inset-0 z-[9999] md:hidden">
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="absolute inset-0 bg-black/75 backdrop-blur-sm"
-            onClick={() => setIsOpen(false)}
-          />
-          <AnimatePresence>
-            {isOpen && (
-              <motion.div
-                key="mobile-panel"
-                initial={{ x: "100%" }}
-                animate={{ x: 0 }}
-                exit={{ x: "100%" }}
-                transition={{ type: "spring", damping: 28, stiffness: 260 }}
-                className="absolute right-0 top-0 bottom-0 w-72 bg-card border-l border-primary/20 shadow-[-8px_0_40px_hsl(22_100%_52%_/_0.15)] flex flex-col p-8"
-                onClick={(e) => e.stopPropagation()}
-              >
-                <button
-                  onClick={() => setIsOpen(false)}
-                  className="self-end mb-8 p-2 text-muted-foreground hover:text-primary transition-colors"
-                >
-                  <X size={22} />
-                </button>
+        <motion.div
+          initial={{ opacity: 0, y: -16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.25 }}
+          className="fixed inset-0 z-[9999] flex flex-col overflow-hidden bg-background px-5 pb-6 pt-3 md:hidden"
+        >
+          <div className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full bg-sun/70" />
+          <div className="pointer-events-none absolute -left-20 bottom-24 h-48 w-48 rounded-full bg-aqua" />
 
-                {/* Fire divider */}
-                <div className="divider-fire mb-8 opacity-60" />
+          <div className="relative flex h-14 items-center justify-between">
+            <Brand />
+            <button
+              onClick={() => setIsOpen(false)}
+              aria-label="Cerrar menú"
+              className="grid h-11 w-11 place-items-center rounded-full bg-white shadow-soft"
+            >
+              <X size={22} />
+            </button>
+          </div>
 
-                <div className="flex flex-col gap-6">
-                  {navLinks.map((link, i) => (
-                    <Link key={link.path} href={link.path}>
-                      <a
-                        className={`flex items-center gap-3 font-heading text-2xl uppercase tracking-[0.1em] transition-colors ${
-                          location === link.path
-                            ? "text-primary"
-                            : "text-muted-foreground hover:text-foreground"
-                        }`}
-                        style={{ animationDelay: `${i * 60}ms` }}
-                      >
-                        {location === link.path && <Flame size={16} className="text-primary shrink-0" />}
-                        {link.name}
-                      </a>
-                    </Link>
-                  ))}
-                </div>
-
-                <div className="divider-fire mt-8 mb-8 opacity-40" />
-
+          <nav className="relative mt-8 flex flex-col">
+            {navLinks.map((link, i) => (
+              <Link key={link.path} href={link.path}>
                 <a
-                  href="https://wa.me/5493492588185"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="mt-auto inline-flex items-center justify-center gap-3 rounded-md bg-primary text-white p-4 font-heading font-700 uppercase tracking-widest text-sm shadow-[0_0_20px_hsl(22_100%_52%_/_0.4)]"
+                  className={`flex items-center justify-between border-b border-border/80 py-4 font-heading text-4xl font-extrabold tracking-tight ${
+                    location === link.path ? "text-primary" : "text-foreground"
+                  }`}
                 >
-                  <Phone size={17} /> WhatsApp
+                  <span>
+                    <span className="mr-3 align-middle text-sm font-bold text-muted-foreground">0{i + 1}</span>
+                    {link.name}
+                  </span>
+                  <ArrowUpRight size={26} className="opacity-60" />
                 </a>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>,
+              </Link>
+            ))}
+          </nav>
+
+          <a
+            href="https://wa.me/5493492588185"
+            target="_blank"
+            rel="noreferrer"
+            className="relative mt-auto inline-flex items-center justify-center gap-3 rounded-full bg-primary p-4 text-base font-bold text-primary-foreground shadow-pop"
+          >
+            <Phone size={18} /> WhatsApp
+          </a>
+        </motion.div>,
         document.body,
       )}
     </header>

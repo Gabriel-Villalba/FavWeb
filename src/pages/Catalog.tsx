@@ -3,8 +3,7 @@ import { Layout } from "@/components/layout/Layout";
 import { ProductCard } from "@/components/catalog/ProductCard";
 import { ProductModal } from "@/components/catalog/ProductModal";
 import { products, Product } from "@/lib/data";
-import { Button } from "@/components/ui/button";
-import { ChevronLeft, ChevronRight, MessageCircle, Flame } from "lucide-react";
+import { ChevronLeft, ChevronRight, MessageCircle } from "lucide-react";
 import { motion } from "framer-motion";
 
 const ITEMS_PER_PAGE = 8;
@@ -41,43 +40,22 @@ export default function Catalog() {
     window.open(`https://wa.me/5493492588185?text=${encodeURIComponent(message)}`, '_blank');
   };
 
+  const pageBtn = "grid h-12 w-12 place-items-center rounded-full bg-white text-foreground shadow-soft transition hover:bg-primary hover:text-white disabled:pointer-events-none disabled:opacity-40";
+
   return (
     <Layout>
-      <div className="container mx-auto px-4 py-16 pt-28">
-        
-        {/* Header */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6">
-          <div>
-            <div className="flex items-center gap-2 mb-3">
-              <Flame size={14} className="text-primary" />
-              <span className="text-xs font-heading uppercase tracking-[0.22em] text-primary">Todos los productos</span>
-            </div>
-            <h1 className="font-heading text-5xl md:text-6xl lg:text-7xl leading-none text-foreground mb-2">
-              CATÁLOGO<br /><span className="text-fire">FAV</span>
-            </h1>
-            <div className="divider-fire w-24 mt-3 opacity-50" />
-          </div>
-
-          {selectedItems.length > 0 && (
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="flex items-center gap-3 bg-primary/10 border border-primary/25 px-5 py-3 rounded-lg shadow-[0_0_16px_hsl(22_100%_52%_/_0.1)]"
-            >
-              <Flame size={14} className="text-primary" />
-              <span className="font-heading text-sm uppercase tracking-wide text-primary">{selectedItems.length} seleccionados</span>
-              <button
-                onClick={handleBulkConsult}
-                className="inline-flex items-center gap-2 bg-primary hover:bg-primary/90 text-white font-heading font-700 uppercase tracking-wide text-xs px-4 py-2 rounded-md transition-all duration-200 shadow-[0_0_10px_hsl(22_100%_52%_/_0.3)]"
-              >
-                <MessageCircle size={13} /> Consultar Lote
-              </button>
-            </motion.div>
-          )}
+      <div className="mx-auto w-full max-w-6xl px-4 pb-24 pt-4 md:px-6 md:pt-8">
+        <div className="mb-7 md:mb-10">
+          <span className="inline-block rounded-full bg-peach px-3 py-1 text-xs font-bold text-primary">Todos los productos</span>
+          <h1 className="mt-3 text-5xl md:text-7xl">
+            Catálogo <span className="hl">Fav</span>
+          </h1>
+          <p className="mt-3 max-w-md text-sm text-muted-foreground md:text-base">
+            Tocá un producto para ver el detalle. Marcá varios con el ✓ y consultalos todos juntos por WhatsApp.
+          </p>
         </div>
 
-        {/* Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-10">
+        <div className="mb-10 grid grid-cols-2 gap-3 sm:grid-cols-3 md:gap-5 lg:grid-cols-4">
           {currentProducts.map((product, i) => (
             <div key={product.id} style={{ animationDelay: `${i * 60}ms` }}>
               <ProductCard
@@ -90,29 +68,47 @@ export default function Catalog() {
           ))}
         </div>
 
-        {/* Pagination */}
         {totalPages > 1 && (
-          <div className="flex justify-center items-center gap-4">
+          <div className="flex items-center justify-center gap-4">
             <button
               disabled={currentPage === 1}
               onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
-              className="w-9 h-9 rounded-md border border-border hover:border-primary/40 disabled:opacity-30 flex items-center justify-center text-muted-foreground hover:text-primary transition-all duration-200"
+              className={pageBtn}
+              aria-label="Página anterior"
             >
-              <ChevronLeft size={16} />
+              <ChevronLeft size={20} />
             </button>
-            <span className="font-heading text-sm uppercase tracking-wider text-muted-foreground">
-              {currentPage} <span className="text-primary/40 mx-1">/</span> {totalPages}
+            <span className="font-heading text-lg font-extrabold">
+              {currentPage} <span className="text-muted-foreground">/ {totalPages}</span>
             </span>
             <button
               disabled={currentPage === totalPages}
               onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
-              className="w-9 h-9 rounded-md border border-border hover:border-primary/40 disabled:opacity-30 flex items-center justify-center text-muted-foreground hover:text-primary transition-all duration-200"
+              className={pageBtn}
+              aria-label="Página siguiente"
             >
-              <ChevronRight size={16} />
+              <ChevronRight size={20} />
             </button>
           </div>
         )}
       </div>
+
+      {/* Barra de selección: flotante abajo, cómoda para el pulgar */}
+      {selectedItems.length > 0 && (
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="fixed inset-x-4 bottom-4 z-40 flex items-center justify-between gap-3 rounded-full bg-pool py-2 pl-6 pr-2 text-white shadow-soft md:inset-x-auto md:left-1/2 md:min-w-[380px] md:-translate-x-1/2"
+        >
+          <span className="text-sm font-bold">{selectedItems.length} seleccionados</span>
+          <button
+            onClick={handleBulkConsult}
+            className="inline-flex min-h-11 items-center gap-2 rounded-full bg-sun px-5 text-sm font-bold text-foreground transition hover:brightness-105"
+          >
+            <MessageCircle size={16} /> Consultar Lote
+          </button>
+        </motion.div>
+      )}
 
       <ProductModal
         product={selectedProduct}

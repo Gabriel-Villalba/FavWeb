@@ -1,58 +1,36 @@
 import { Layout } from "@/components/layout/Layout";
-import { Flame } from "lucide-react";
 import workshopImage from "@assets/generated_images/metal_workshop_interior.png";
 
 export default function About() {
   return (
     <Layout>
-      <div className="container mx-auto px-4 py-16 pt-28">
-        <div className="max-w-5xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-14 items-center">
-            
-            {/* Text */}
-            <div className="order-2 md:order-1">
-              <div className="flex items-center gap-2 mb-4">
-                <Flame size={14} className="text-primary" />
-                <span className="text-xs font-heading uppercase tracking-[0.22em] text-primary">Quiénes somos</span>
-              </div>
-              <h1 className="font-heading text-5xl md:text-6xl leading-none mb-4 text-foreground">
-                NUESTRA<br /><span className="text-fire">HISTORIA</span>
-              </h1>
-              <div className="divider-fire w-20 mb-8 opacity-50" />
-
-              <div className="space-y-5 text-muted-foreground leading-relaxed">
-                <p>
-                  En <strong className="text-foreground">FAV Asadores</strong>, el fuego es más que una forma de cocinar; es una tradición que une. Todo comenzó hace más de 15 años en un pequeño taller en Rafaela, donde la pasión por la herrería y el amor por el asado se encontraron.
-                </p>
-                <p>
-                  Lo que empezó como pedidos para amigos y familiares se transformó en un emprendimiento dedicado a crear las mejores herramientas para el asador argentino. Creemos que una buena parrilla no se cambia, se hereda. Cada pieza sale de nuestro taller para resistir miles de encendidas.
-                </p>
-                <p>
-                  Hoy seguimos trabajando con la misma dedicación artesanal, incorporando diseño y tecnología para ofrecer productos funcionales, estéticos y eternos.
-                </p>
+      <div className="mx-auto w-full max-w-5xl px-4 pb-8 pt-4 md:px-6 md:pt-10">
+        <div className="grid items-center gap-10 md:grid-cols-2 md:gap-14">
+          <div className="relative">
+            <div className="aspect-[4/5] overflow-hidden rounded-[2rem] shadow-soft md:rounded-[2.5rem]">
+              <img src={workshopImage} alt="Nuestro Taller" className="h-full w-full object-cover" />
+            </div>
+            <div className="absolute -bottom-5 right-4 grid h-28 w-28 rotate-6 place-items-center rounded-full bg-sun text-center shadow-soft md:-left-6 md:right-auto md:h-32 md:w-32">
+              <div>
+                <p className="font-heading text-4xl font-extrabold leading-none">15+</p>
+                <p className="mt-1 px-2 text-[0.65rem] font-bold leading-tight">años forjando calidad</p>
               </div>
             </div>
+          </div>
 
-            {/* Image */}
-            <div className="order-1 md:order-2 relative">
-              <div className="aspect-[4/5] rounded-lg overflow-hidden shadow-[0_20px_60px_hsl(22_100%_52%_/_0.12)] border border-primary/10 rotate-1 hover:rotate-0 transition-transform duration-500">
-                <img
-                  src={workshopImage}
-                  alt="Nuestro Taller"
-                  className="w-full h-full object-cover"
-                />
-                {/* Fire overlay on image */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-              </div>
-
-              {/* Stat card */}
-              <div className="absolute -bottom-5 -left-5 bg-card border border-primary/20 p-5 rounded-lg shadow-[0_8px_30px_hsl(22_100%_52%_/_0.12)] hidden md:block">
-                <div className="flex items-center gap-2 mb-1">
-                  <Flame size={14} className="text-primary" />
-                </div>
-                <p className="font-heading font-900 text-4xl text-primary leading-none mb-1">15+</p>
-                <p className="text-xs font-heading uppercase tracking-[0.12em] text-muted-foreground">Años forjando calidad</p>
-              </div>
+          <div className="pt-4 md:pt-0">
+            <span className="inline-block rounded-full bg-peach px-3 py-1 text-xs font-bold text-primary">Quiénes somos</span>
+            <h1 className="mt-3 text-5xl md:text-6xl">Nuestra <span className="hl">historia</span></h1>
+            <div className="mt-6 space-y-4 leading-relaxed text-muted-foreground">
+              <p>
+                En <strong className="text-foreground">FAV Asadores</strong>, el fuego es más que una forma de cocinar; es una tradición que une. Todo comenzó hace más de 15 años en un pequeño taller en Rafaela, donde la pasión por la herrería y el amor por el asado se encontraron.
+              </p>
+              <p>
+                Lo que empezó como pedidos para amigos y familiares se transformó en un emprendimiento dedicado a crear las mejores herramientas para el asador argentino. Creemos que una buena parrilla no se cambia, se hereda. Cada pieza sale de nuestro taller para resistir miles de encendidas.
+              </p>
+              <p>
+                Hoy seguimos trabajando con la misma dedicación artesanal, incorporando diseño y tecnología para ofrecer productos funcionales, estéticos y eternos.
+              </p>
             </div>
           </div>
         </div>

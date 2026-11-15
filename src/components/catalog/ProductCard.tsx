@@ -1,6 +1,6 @@
 import { Product } from "@/lib/data";
 import { motion } from "framer-motion";
-import { Eye, Check, Flame } from "lucide-react";
+import { ArrowUpRight, Check } from "lucide-react";
 import { useMemo } from "react";
 import { ProductImageCarousel } from "@/components/catalog/ProductImageCarousel";
 import { getProductImages } from "@/lib/productImages";
@@ -37,71 +37,55 @@ export function ProductCard({ product, onOpen, isSelected, onSelect }: ProductCa
 
   return (
     <motion.div
-      whileHover={{ y: -5 }}
+      whileHover={{ y: -4 }}
       transition={{ type: "spring", stiffness: 300, damping: 25 }}
-      className={`group relative bg-card rounded-lg overflow-hidden border transition-all duration-300 cursor-pointer animate-float-up ${
-        isSelected
-          ? 'border-primary/60 shadow-[0_0_20px_hsl(22_100%_52%_/_0.2)]'
-          : 'border-border hover:border-primary/35 hover:shadow-[0_8px_30px_hsl(22_100%_52%_/_0.12)]'
+      className={`group relative cursor-pointer rounded-[1.5rem] p-2 transition-colors animate-float-up md:rounded-[2rem] md:p-3 ${
+        isSelected ? 'bg-peach ring-2 ring-primary' : 'bg-card shadow-soft'
       }`}
       onClick={() => onOpen(product)}
     >
-      {/* Image */}
-      <div className="aspect-square relative overflow-hidden bg-secondary/40">
+      <div className="relative aspect-square overflow-hidden rounded-[1.1rem] bg-white md:rounded-3xl">
         <ProductImageCarousel
           key={product.id}
           images={productImages}
           alt={product.name}
           className="h-full w-full"
-          imageClassName="w-full h-full object-cover transition-transform duration-500 group-hover:scale-108"
+          imageClassName="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
         />
-        
-        {/* Dark overlay + fire tint on hover */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/0 to-primary/0 group-hover:from-primary/10 group-hover:to-transparent transition-all duration-400" />
 
-        {/* View button */}
-        <button
-          onClick={(e) => { e.stopPropagation(); onOpen(product); }}
-          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 inline-flex items-center gap-2 bg-primary px-4 py-2 rounded-md text-xs font-heading font-700 text-white uppercase tracking-wider opacity-0 scale-90 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 shadow-[0_0_14px_hsl(22_100%_52%_/_0.5)]"
-        >
-          <Eye size={13} /> Ver detalle
-        </button>
+        <span className="absolute left-2 top-2 z-10 max-w-[65%] truncate rounded-full bg-white/95 px-2.5 py-1 text-[0.65rem] font-bold text-foreground md:text-xs">
+          {product.category}
+        </span>
 
-        {/* Category badge */}
-        <div className="absolute top-3 left-3">
-          <span className="badge-fire">{product.category}</span>
-        </div>
-
-        {/* Select button */}
         {onSelect && (
           <button
             onClick={(e) => { e.stopPropagation(); onSelect(product); }}
-            className={`absolute top-3 right-3 w-8 h-8 rounded-md flex items-center justify-center transition-all duration-200 z-10 border ${
-              isSelected
-                ? 'bg-primary border-primary text-white shadow-[0_0_10px_hsl(22_100%_52%_/_0.5)]'
-                : 'bg-black/40 border-white/20 text-white hover:bg-primary/70 hover:border-primary/60 backdrop-blur-sm'
+            className={`absolute right-2 top-2 z-10 grid h-9 w-9 place-items-center rounded-full border-2 transition before:absolute before:-inset-1.5 before:content-[''] ${
+              isSelected ? 'border-primary bg-primary text-white' : 'border-white bg-white/90 text-muted-foreground hover:text-primary'
             }`}
             aria-label="Seleccionar producto"
+            aria-pressed={!!isSelected}
           >
-            <Check size={14} />
+            <Check size={16} strokeWidth={3} />
           </button>
         )}
       </div>
 
-      {/* Info */}
-      <div className="p-4">
-        <h3 className="font-heading text-base leading-tight mb-1 text-foreground group-hover:text-primary transition-colors duration-200 line-clamp-2" title={product.name}>
+      <div className="px-1.5 pb-1 pt-3 md:px-2">
+        <h3 className="line-clamp-2 min-h-[2.5rem] text-[0.95rem] font-bold leading-snug md:text-lg md:min-h-[3.25rem]" title={product.name}>
           {product.name}
         </h3>
-
-        <div className="flex items-center justify-between mt-3">
-          <div className="flex items-center gap-1.5">
-            <Flame size={12} className="text-primary" />
-            <span className="font-heading font-700 text-primary text-xl tracking-tight">
-              ${normalizedPrice.toLocaleString('es-AR')}
-            </span>
-          </div>
+        <div className="mt-2 flex items-center justify-between gap-1">
+          <span className="font-heading text-lg font-extrabold tracking-tight text-primary md:text-2xl">
+            ${normalizedPrice.toLocaleString('es-AR')}
+          </span>
+          <button
+            onClick={(e) => { e.stopPropagation(); onOpen(product); }}
+            className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-foreground text-white transition group-hover:bg-primary"
+            aria-label={`Ver detalle de ${product.name}`}
+          >
+            <ArrowUpRight size={18} />
+          </button>
         </div>
       </div>
     </motion.div>

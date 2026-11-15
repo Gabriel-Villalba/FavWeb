@@ -1,6 +1,6 @@
 import { Product } from "@/lib/data";
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
-import { MessageCircle, CheckCircle2, Flame } from "lucide-react";
+import { MessageCircle, CheckCircle2 } from "lucide-react";
 import { useMemo } from "react";
 import { ProductImageCarousel } from "@/components/catalog/ProductImageCarousel";
 import { getProductImages } from "@/lib/productImages";
@@ -23,87 +23,62 @@ export function ProductModal({ product, isOpen, onClose }: ProductModalProps) {
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-4xl p-0 overflow-hidden bg-card border border-primary/20 shadow-[0_0_60px_hsl(22_100%_52%_/_0.15)] max-w-[95vw] max-h-[90vh]">
-        <div className="grid md:grid-cols-2 h-full max-h-[90vh]">
-          
-          {/* Image side */}
-          <div className="relative h-64 md:h-auto bg-secondary/40 overflow-hidden flex items-center justify-center">
+      {/* Cel: hoja que sube desde abajo · Pantallas grandes: tarjeta centrada */}
+      <DialogContent className="max-h-[92svh] w-full max-w-4xl gap-0 overflow-hidden rounded-t-[2rem] border-0 bg-card p-0 shadow-soft sm:rounded-[2rem] max-sm:bottom-0 max-sm:top-auto max-sm:max-w-none max-sm:translate-y-0 max-sm:slide-in-from-bottom max-sm:slide-in-from-left-0 max-sm:slide-out-to-bottom max-sm:slide-out-to-left-0">
+        <div className="grid max-h-[92svh] overflow-y-auto md:grid-cols-2 md:overflow-hidden">
+          <div className="relative h-72 bg-white md:h-full md:min-h-[520px]">
             <ProductImageCarousel
               key={product.id}
               images={productImages}
               alt={product.name}
               className="h-full w-full"
-              imageClassName="w-full h-full object-contain max-h-[60vh] md:max-h-full relative z-0 p-4"
+              imageClassName="h-full w-full object-contain p-3"
             />
-            {/* Fire overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent z-10 pointer-events-none" />
-            <div className="absolute inset-0 bg-gradient-to-br from-primary/8 via-transparent to-transparent z-10 pointer-events-none" />
-
-            {/* Bottom label */}
-            <div className="absolute bottom-4 left-4 z-20">
-              <span className="badge-fire">{product.category}</span>
-            </div>
+            <span className="absolute left-4 top-4 z-10 rounded-full bg-sun px-3 py-1 text-xs font-bold text-foreground">
+              {product.category}
+            </span>
           </div>
 
-          {/* Info side */}
-          <div className="flex flex-col overflow-y-auto">
-            <div className="p-7 md:p-10 flex-1">
-              
-              {/* Header */}
-              <div className="mb-6">
-                <div className="flex items-center gap-2 mb-3">
-                  <Flame size={14} className="text-primary" />
-                  <span className="text-xs font-heading uppercase tracking-[0.2em] text-primary">{product.category}</span>
-                </div>
-                <DialogTitle className="font-heading text-3xl md:text-4xl leading-none mb-4 text-foreground">
-                  {product.name}
-                </DialogTitle>
-                <div className="divider-fire w-16 mb-4 opacity-60" />
-                <div className="flex items-baseline gap-2">
-                  <span className="font-heading text-4xl font-900 text-primary tracking-tight">
-                    ${product.price.toLocaleString('es-AR')}
-                  </span>
-                  <span className="text-xs text-muted-foreground uppercase tracking-wide">ARS</span>
-                </div>
+          <div className="flex flex-col md:max-h-[92svh] md:overflow-y-auto">
+            <div className="flex-1 p-6 md:p-9">
+              <DialogTitle className="text-3xl font-extrabold leading-tight md:text-4xl">{product.name}</DialogTitle>
+              <div className="mt-3 flex items-baseline gap-2">
+                <span className="font-heading text-4xl font-extrabold tracking-tight text-primary">
+                  ${product.price.toLocaleString('es-AR')}
+                </span>
+                <span className="text-xs font-bold text-muted-foreground">ARS</span>
               </div>
 
-              {/* Description */}
-              <DialogDescription className="text-sm text-muted-foreground leading-relaxed mb-7 whitespace-pre-line">
+              <DialogDescription className="mt-5 whitespace-pre-line text-sm leading-relaxed text-muted-foreground">
                 {product.description}
               </DialogDescription>
 
-              {/* Features */}
-              <div>
-                <h4 className="font-heading text-xs uppercase tracking-[0.2em] text-primary/80 mb-4">Características</h4>
-                <ul className="space-y-2.5">
-                  {product.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-center gap-3 text-sm text-muted-foreground">
-                      <CheckCircle2 size={14} className="text-primary shrink-0" />
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              <h4 className="mb-3 mt-7 text-sm font-bold">Características</h4>
+              <ul className="grid gap-2 sm:grid-cols-2">
+                {product.features.map((feature, idx) => (
+                  <li key={idx} className="flex items-center gap-2 rounded-full bg-secondary px-3 py-2 text-sm font-medium">
+                    <CheckCircle2 size={16} className="shrink-0 text-primary" />
+                    {feature}
+                  </li>
+                ))}
+              </ul>
             </div>
 
-            {/* Actions */}
-            <div className="p-7 md:px-10 md:pb-10 border-t border-border">
-              <div className="flex flex-col gap-3">
-                <a
-                  href={whatsappLink}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="w-full inline-flex items-center justify-center gap-2.5 bg-[#25D366] hover:bg-[#20bd5a] text-white font-heading font-700 uppercase tracking-[0.12em] text-sm px-6 py-3.5 rounded-md transition-all duration-300 shadow-[0_0_16px_hsl(142_70%_45%_/_0.3)] hover:shadow-[0_0_24px_hsl(142_70%_45%_/_0.5)]"
-                >
-                  <MessageCircle size={16} /> Consultar por WhatsApp
-                </a>
-                <button
-                  onClick={onClose}
-                  className="w-full inline-flex items-center justify-center gap-2 border border-border hover:border-primary/30 text-muted-foreground hover:text-foreground font-heading font-700 uppercase tracking-[0.12em] text-xs px-6 py-3 rounded-md transition-all duration-200"
-                >
-                  Volver al Catálogo
-                </button>
-              </div>
+            <div className="sticky bottom-0 flex flex-col gap-2 border-t border-border bg-card p-4 md:px-9 md:pb-7">
+              <a
+                href={whatsappLink}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex min-h-13 items-center justify-center gap-2.5 rounded-full bg-[#1FA855] px-6 py-3.5 text-sm font-bold text-white shadow-soft transition hover:brightness-110"
+              >
+                <MessageCircle size={18} /> Consultar por WhatsApp
+              </a>
+              <button
+                onClick={onClose}
+                className="min-h-11 rounded-full px-6 py-2 text-sm font-semibold text-muted-foreground transition hover:bg-secondary hover:text-foreground"
+              >
+                Volver al Catálogo
+              </button>
             </div>
           </div>
         </div>
